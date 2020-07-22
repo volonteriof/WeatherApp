@@ -42,3 +42,10 @@ body {
 .temperature-section h2 {
   font-size: 40px;
 }
+
+@media (max-width: 900px) {
+  .location,
+  .temperature {
+    flex-direction: column;
+  }
+}
