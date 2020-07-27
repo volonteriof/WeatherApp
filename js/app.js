@@ -2,6 +2,7 @@ window.addEventListener("load", () => {
   let lon;
   let lat;
   let locationTimezone = document.querySelector(".location-timezone");
+  let locationIcon = document.querySelector(".location-icon");
   let temperatureDegree = document.querySelector(".temperature-degree");
   let temperatureDesc = document.querySelector(".temperature-description");
 
@@ -20,22 +21,16 @@ window.addEventListener("load", () => {
           const name = data.name;
           const temp = data.main.temp;
           const icon = data.weather[0].icon;
-          const summary = data.weather[0].main;
+          const desc = data.weather[0].main;
           //Set DOM Elements from the API
           locationTimezone.textContent = name;
+          locationIcon.setAttribute(
+            "src",
+            `http://openweathermap.org/img/wn/${icon}@2x.png`
+          );
           temperatureDegree.textContent = `${Math.floor(temp - 273.15)}°C`;
-          temperatureDesc.textContent = summary;
-          //Set Icon
-          setIcons(icon, document.querySelector(".icon"));
+          temperatureDesc.textContent = desc;
         });
     });
-  }
-
-  function setIcons(icon, iconID) {
-    const skycons = new Skycons({ color: "white" });
-    //Replace every "-" with "_" and make uppercase
-    const currentIcon = icon.replace(/-/g, "_").toUpperCase();
-    skycons.play();
-    return skycons.set(iconID, Skycons[currentIcon]);
   }
 });
