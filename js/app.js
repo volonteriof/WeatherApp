@@ -30,6 +30,13 @@ window.addEventListener("load", () => {
           );
           temperatureDegree.textContent = `${Math.floor(temp - 273.15)}°C`;
           temperatureDesc.textContent = desc;
+          if (icon.includes("d")) {
+            document.querySelector("body").style.background =
+              "linear-gradient(rgb(228, 215, 160), rgb(231, 153, 34))";
+          } else {
+            document.querySelector("body").style.background =
+              "linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143))";
+          }
         });
     });
   }
