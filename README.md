@@ -1,2 +1,2 @@
 # WeatherApp
-Using geolocalization and Dark Sky API
+Using geolocalization and Openweather API
