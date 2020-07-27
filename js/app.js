@@ -1,54 +1,39 @@
 window.addEventListener("load", () => {
-  let long;
+  let lon;
   let lat;
   let locationTimezone = document.querySelector(".location-timezone");
   let temperatureDegree = document.querySelector(".temperature-degree");
-  let temperatureDescription = document.querySelector(
-    ".temperature-description"
-  );
-  let temperatureSection = document.querySelector(".temperature-section");
-  const temperatureSpan = document.querySelector(".temperature-section span");
+  let temperatureDesc = document.querySelector(".temperature-description");
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      long = position.coords.longitude;
+      lon = position.coords.longitude;
       lat = position.coords.latitude;
 
-      const proxy = "https://cors-anywhere.herokuapp.com/";
-      const api = `${proxy}https://api.darksky.net/forecast/fd9d9c6418c23d94745b836767721ad1/${lat},${long}`;
+      const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2436e9791935423bbc9a4f3e0dc0bd93`;
 
       fetch(api)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          const timezone = data.timezone;
-          const { temperature, summary, icon } = data.currently;
+          const name = data.name;
+          const temp = data.main.temp;
+          const icon = data.weather[0].icon;
+          const summary = data.weather[0].main;
           //Set DOM Elements from the API
-          locationTimezone.textContent = timezone;
-          temperatureDegree.textContent = Math.floor(temperature);
-          temperatureDescription.textContent = summary;
-          //Formula for Celsius
-          let celsius = (temperature - 32) * (5 / 9);
+          locationTimezone.textContent = name;
+          temperatureDegree.textContent = `${Math.floor(temp - 273.15)}°C`;
+          temperatureDesc.textContent = summary;
           //Set Icon
           setIcons(icon, document.querySelector(".icon"));
-          //Change temperature to Celsius/Farenheit
-          temperatureSection.addEventListener("click", () => {
-            if (temperatureSpan.textContent === "F") {
-              temperatureSpan.textContent = "C";
-              temperatureDegree.textContent = Math.floor(celsius);
-            } else {
-              temperatureSpan.textContent = "F";
-              temperatureDegree.textContent = Math.floor(temperature);
-            }
-          });
         });
     });
   }
 
   function setIcons(icon, iconID) {
     const skycons = new Skycons({ color: "white" });
-    //Replace every "-" with "_" and makle uppercase
+    //Replace every "-" with "_" and make uppercase
     const currentIcon = icon.replace(/-/g, "_").toUpperCase();
     skycons.play();
     return skycons.set(iconID, Skycons[currentIcon]);

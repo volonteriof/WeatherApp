@@ -28,18 +28,7 @@ body {
   flex-direction: column;
 }
 
-.temperature-section {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.temperature-section span {
-  margin: 10px;
-  font-size: 30px;
-}
-
-.temperature-section h2 {
+.temperature h2 {
   font-size: 40px;
 }
 
