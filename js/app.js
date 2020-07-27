@@ -5,6 +5,7 @@ window.addEventListener("load", () => {
   let locationIcon = document.querySelector(".location-icon");
   let temperatureDegree = document.querySelector(".temperature-degree");
   let temperatureDesc = document.querySelector(".temperature-description");
+  let pageBackground = document.querySelector("body");
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -31,10 +32,10 @@ window.addEventListener("load", () => {
           temperatureDegree.textContent = `${Math.floor(temp - 273.15)}°C`;
           temperatureDesc.textContent = desc;
           if (icon.includes("d")) {
-            document.querySelector("body").style.background =
+            pageBackground.style.background =
               "linear-gradient(rgb(228, 215, 160), rgb(231, 153, 34))";
           } else {
-            document.querySelector("body").style.background =
+            pageBackground.style.background =
               "linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143))";
           }
         });

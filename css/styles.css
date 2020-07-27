@@ -19,21 +19,15 @@ body {
   height: 30vh;
   width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 
-.temperature {
-  flex-direction: column;
+.location h1 {
+  font-size: 50px;
 }
 
 .temperature h2 {
   font-size: 40px;
-}
-
-@media (max-width: 900px) {
-  .location,
-  .temperature {
-    flex-direction: column;
-  }
 }
