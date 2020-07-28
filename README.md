@@ -1,2 +1,2 @@
 # WeatherApp
-Using geolocalization and Openweather API
+Using geolocalization, Openweather API and Skycons
