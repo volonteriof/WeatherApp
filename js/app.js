@@ -21,7 +21,6 @@ window.addEventListener("load", () => {
           const temp = data.main.temp;
           const desc = data.weather[0].main;
           let icon = data.weather[0].icon;
-          console.log(icon);
           //Set DOM Elements from the API
           locationName.textContent = name;
           temperatureDegree.textContent = `${Math.floor(temp - 273.15)}°C`;
