@@ -34,38 +34,42 @@ window.addEventListener("load", () => {
               "linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143))";
           }
           //Set icon for current weather
-          if (icon === "01d") {
-            icon = "CLEAR_DAY";
-          } else if (icon === "01n") {
-            icon = "CLEAR_NIGHT";
-          } else if (icon === "02d") {
-            icon = "PARTLY_CLOUDY_DAY";
-          } else if (icon === "02n") {
-            icon = "PARTLY_CLOUDY_NIGHT";
-          } else if (
-            icon === "03d" ||
-            icon === "03n" ||
-            icon === "04d" ||
-            icon === "04n"
-          ) {
-            icon = "CLOUDY";
-          } else if (
-            icon === "09d" ||
-            icon === "09n" ||
-            icon === "10d" ||
-            icon === "10n" ||
-            icon === "11d" ||
-            icon === "11n"
-          ) {
-            icon = "RAIN";
-          } else if (icon === "13d" || icon === "13n") {
-            icon = "SNOW";
-          } else if (icon === "50d" || icon === "50n") {
-            icon = "FOG";
-          }
+          icon = weatherIcon(icon);
           setIcons(icon, document.querySelector(".icon"));
         });
     });
+  }
+
+  function weatherIcon(icon) {
+    if (icon === "01d") {
+      return "CLEAR_DAY";
+    } else if (icon === "01n") {
+      return "CLEAR_NIGHT";
+    } else if (icon === "02d") {
+      return "PARTLY_CLOUDY_DAY";
+    } else if (icon === "02n") {
+      return "PARTLY_CLOUDY_NIGHT";
+    } else if (
+      icon === "03d" ||
+      icon === "03n" ||
+      icon === "04d" ||
+      icon === "04n"
+    ) {
+      return "CLOUDY";
+    } else if (
+      icon === "09d" ||
+      icon === "09n" ||
+      icon === "10d" ||
+      icon === "10n" ||
+      icon === "11d" ||
+      icon === "11n"
+    ) {
+      return "RAIN";
+    } else if (icon === "13d" || icon === "13n") {
+      return "SNOW";
+    } else if (icon === "50d" || icon === "50n") {
+      return "FOG";
+    }
   }
 
   function setIcons(icon, iconID) {
